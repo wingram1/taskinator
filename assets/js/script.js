@@ -5,10 +5,22 @@ var createTaskHandler = function() {
 
     event.preventDefault(); //prevents browser from refreshing by default when form is submitted
 
+    var taskNameInput = document.querySelector("input[name='task-name']").value;
+    var taskTypeInput = document.querySelector("select[name='task-type']").value;
+
+    //create list item
     var listItemEl = document.createElement("li");
     listItemEl.className = "task-item";
-    listItemEl.textContent = "This is a new task.";
+
+    //create div to hold task info and add to list item
+    var taskInfoEl = document.createElement("div");
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
+        
+    //add HTML content to div
+    listItemEl.appendChild(taskInfoEl);
+
+    //adds entire list item to list
     tasksToDoEl.appendChild(listItemEl);
-}
+};
 
 formEl.addEventListener("submit", createTaskHandler);
